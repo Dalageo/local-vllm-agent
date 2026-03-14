@@ -1,7 +1,9 @@
+import requests
+from ddgs import DDGS
 from typing import List
 from langchain_core.tools import tool
 from geopy.geocoders import Nominatim
-import requests
+
 
 @tool   
 def get_current_weather(location: str) -> dict:
@@ -62,7 +64,27 @@ def get_currency_exchange_rates(base_currency_code: str, currency_codes: List[st
             return {"error": f"API request failed with status code {response.status_code}: {response.text}"}
     except Exception as e:
         return {"error": f"A network error occurred: {str(e)}"}
+    
+
+@tool
+def web_search(query: str) -> dict:
+    """
+    Search the internet for a given topic and return the top results.
+    Use this tool whenever you need up-to-date information, facts, or URLs.
+    Args:
+        query (str): The search term or question to look up.
+    Returns:
+        list: A list of search results containing 'title', 'href' (URL), and 'body' (snippet).
+    """
+    try:
+        results = DDGS().text(query, max_results=5) 
+        if not results:
+            return {"error": "No results found for this query."}
+        return results 
+        
+    except Exception as e:
+        return {"error": f"A search error occurred: {str(e)}"}
 
     
 
-tools = [get_current_weather, get_currency_exchange_rates]
+tools = [get_current_weather, get_currency_exchange_rates, web_search]

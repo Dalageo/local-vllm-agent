@@ -1,5 +1,5 @@
 import uuid
-from app.utils import get_agent
+from app.utils.utils import get_agent
 from langgraph.graph.state import CompiledStateGraph
 
 

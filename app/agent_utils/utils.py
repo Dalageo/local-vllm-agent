@@ -1,7 +1,7 @@
-from app.tools import tools
-from app.prompt import instructions
+from app.agent_utils.tools import tools
 from langchain_openai import ChatOpenAI
-from config import MODEL_NAME, BASE_URL
+from app.config import MODEL_NAME, BASE_URL
+from app.agent_utils.prompt import instructions
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph.state import CompiledStateGraph
