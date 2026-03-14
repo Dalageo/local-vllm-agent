@@ -1,8 +1,10 @@
 #!/bin/bash
 
 cd "$(dirname "$0")" || exit
-MODEL_NAME=$(python3 -c "import config; print(config.MODEL_NAME)")
-MAX_TOKENS=$(python3 -c "import config; print(config.MAX_TOKENS)")
+export PYTHONPATH="../../"
+
+MODEL_NAME=$(python3 -c "from app import config; print(config.MODEL_NAME)")
+MAX_TOKENS=$(python3 -c "from app import config; print(config.MAX_TOKENS)")
 
 echo "==================================================="
 echo "🚀 Initializing vLLM Agent"
