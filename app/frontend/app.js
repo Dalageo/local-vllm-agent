@@ -72,6 +72,20 @@ function applySettings() {
     elements.fontSizeValue.textContent = `${state.settings.fontSize}px`;
     elements.soundToggle.checked = state.settings.sound;
     elements.animationToggle.checked = state.settings.animation;
+    
+    updateSliderFill(elements.fontSizeRange);
+}
+
+function updateSliderFill(slider) {
+    const min = parseFloat(slider.min) || 0;
+    const max = parseFloat(slider.max) || 100;
+    const value = parseFloat(slider.value);
+    const percentage = ((value - min) / (max - min)) * 100;
+    
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    const borderColor = getComputedStyle(document.documentElement).getPropertyValue('--border').trim();
+    
+    slider.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${percentage}%, ${borderColor} ${percentage}%, ${borderColor} 100%)`;
 }
 
 function saveSettings() {
@@ -153,10 +167,14 @@ function setupEventListeners() {
     });
     elements.themeSelect.addEventListener('change', (e) => {
         state.settings.theme = e.target.value;
+        document.documentElement.setAttribute('data-theme', state.settings.theme);
+        // Update slider fill with new theme colors
+        setTimeout(() => updateSliderFill(elements.fontSizeRange), 10);
     });
     elements.fontSizeRange.addEventListener('input', (e) => {
         state.settings.fontSize = parseInt(e.target.value);
         elements.fontSizeValue.textContent = `${state.settings.fontSize}px`;
+        updateSliderFill(e.target);
     });
     elements.soundToggle.addEventListener('change', (e) => {
         state.settings.sound = e.target.checked;

@@ -313,13 +313,20 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    background: var(--background);
 }
 
 .messages-container {
     flex: 1;
     overflow-y: auto;
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md);
     scroll-behavior: smooth;
+}
+
+.messages-container .message {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Messages */
@@ -383,24 +390,24 @@ body {
 /* User Message */
 .user-message {
     display: flex;
-    align-items: flex-start;
+    justify-content: flex-end;
     gap: var(--spacing-sm);
 }
 
 .user-message::before {
-    content: '>';
-    color: var(--primary);
-    font-weight: bold;
-    flex-shrink: 0;
+    display: none;
 }
 
 .user-message .message-content {
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--primary);
+    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+    color: var(--background);
+    border: none;
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-sm);
-    max-width: 90%;
+    border-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-sm);
+    max-width: 75%;
+    font-weight: 500;
 }
 
 /* Agent Message */
@@ -422,10 +429,12 @@ body {
     background: var(--surface-elevated);
     border: 1px solid var(--border);
     padding: var(--spacing-md);
-    border-radius: var(--radius-sm);
-    line-height: 1.6;
+    border-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-sm);
+    line-height: 1.7;
     white-space: pre-wrap;
     word-wrap: break-word;
+    max-width: 85%;
 }
 
 /* Typing Cursor */
@@ -569,20 +578,24 @@ body {
 /* ----- INPUT AREA ----- */
 
 .terminal-input {
-    padding: var(--spacing-md);
-    background: var(--surface-elevated);
-    border-top: 1px solid var(--border);
+    padding: var(--spacing-md) var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    background: linear-gradient(to top, var(--surface) 0%, var(--background) 100%);
+    border-top: none;
 }
 
 .input-wrapper {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    background: var(--surface);
+    background: var(--surface-elevated);
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: var(--spacing-sm) var(--spacing-md);
     transition: var(--transition-fast);
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .input-wrapper:focus-within {
@@ -649,6 +662,9 @@ body {
     gap: var(--spacing-md);
     margin-top: var(--spacing-sm);
     padding: 0 var(--spacing-sm);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hint {
@@ -745,8 +761,7 @@ kbd {
     margin-bottom: var(--spacing-xs);
 }
 
-.setting-group select,
-.setting-group input[type="range"] {
+.setting-group select {
     width: 100%;
     padding: var(--spacing-sm);
     background: var(--surface);
@@ -754,6 +769,52 @@ kbd {
     border-radius: var(--radius-sm);
     color: var(--text);
     font-family: var(--font-mono);
+}
+
+/* Range Input Slider */
+.setting-group input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    outline: none;
+    padding: 0;
+    border: none;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--surface-elevated);
+    box-shadow: 0 0 8px var(--primary-glow);
+    transition: var(--transition-fast);
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.setting-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--surface-elevated);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.setting-group input[type="range"]::-moz-range-track {
+    background: var(--border);
+    height: 8px;
+    border-radius: 4px;
 }
 
 .setting-group select:focus {
