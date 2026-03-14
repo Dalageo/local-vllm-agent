@@ -1,17 +1,24 @@
-# vLLM Agent
+<div align="center">
+  <a href="https://www.python.org/downloads/release/python-3110/" target="_blank">
+  <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python 3.11"></a>
+  <a href="https://github.com/Dalageo/local-vllm-agent/blob/dev/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-800080" alt="License: MIT"></a>
+  <img src="https://img.shields.io/github/stars/Dalageo/local-vllm-agent?style=social" alt="GitHub stars">
+</div> 
 
-A local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [LangGraph](https://github.com/langchain-ai/langgraph), featuring a modern web interface for interactive conversations. The agent uses the ReAct (Reasoning + Acting) pattern to intelligently use tools and provide informed responses.
+# vLLM Agent <img src="https://github.com/user-attachments/assets/e051e21a-ae95-4f2b-8be1-d3edc059949d" width="28">
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+This project implements a local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [LangGraph](https://github.com/langchain-ai/langgraph), with a modern web interface for interactive conversations. The agent uses the ReAct (Reasoning + Acting) pattern to intelligently use tools and provide informed responses.
 
-## Features
 
-- **Local LLM Inference** — Run language models locally using vLLM's high-performance serving
-- **Tool-Augmented Responses** — Agent can use tools to fetch real-time data
-- **Streaming Responses** — Real-time token streaming via Server-Sent Events (SSE)
-- **Conversation Memory** — Maintains context within sessions
-- **Modern Web UI** — Clean, responsive chat interface with multiple themes
+## 🚀 Features
+
+- **Local LLM Inference:**  Powered by vLLM for fast, local LLM serving across a wide range of supported models.
+- **Flexible Model Testing:** Easily swap and evaluate different models to find the best fit for your specific use case.
+- **Tool-Augmented Responses:** Leverages the ReAct pattern to fetch real-time data and execute external tools.
+- **Streaming UI:** Interactive conversations with real-time token streaming via Server-Sent Events (SSE).
+- **Persistent Memory:** Maintains full context within sessions
+- **Modern Web Interface:** Clean, responsive chat interface with multiple themes
 
 ### Built-in Tools
 
@@ -21,37 +28,45 @@ A local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [La
 | 💱 Currency | Live exchange rates between currencies (Frankfurter API) |
 | 🔍 Web Search | Search the internet via DuckDuckGo |
 
-## Architecture
+*The agent automatically selects the best tool based on the user's request. You can expand these capabilities by adding new functions to `app/utils/tools.py`.*
 
-```
-┌─────────────────────────────────────┐
-│         Web Interface (:8080)       │
-│         FastAPI + SSE Streaming     │
-└─────────────────┬───────────────────┘
-                  │
-┌─────────────────▼───────────────────┐
-│         LangGraph Agent             │
-│         ReAct Pattern + Tools       │
-└─────────────────┬───────────────────┘
-                  │
-┌─────────────────▼───────────────────┐
-│         vLLM Server (:8000)         │
-│         OpenAI-Compatible API       │
-└─────────────────────────────────────┘
-```
+## 🛠️Development Workflow
+This project follows a three-tier branching strategy with automated deployments:
 
-## Requirements
+### Branch Structure
+
+- **`dev`** - Development branch for active feature work
+- **`tst`** - Testing/staging environment for validation
+- **`prd`** - Production-ready stable releases
+
+### CI/CD Pipeline
+
+**Automatic Deployment (dev → tst)**:
+- Any push to `dev` automatically triggers a GitHub Actions workflow
+- Changes are merged into `tst` branch for testing
+- Workflow: `.github/workflows/deploy_tst.yml`
+
+**Manual Deployment (tst → prd)**:
+- Deployment to `prd` requires manual approval via GitHub Actions
+- Only executable from the `tst` branch
+- Workflow: `.github/workflows/deploy_prd.yml`
+
+*Although this is a personal project, the CI/CD pipeline adheres to professional standards for maintaining a stable codebase and facilitating effective collaboration.*
+
+## ⚙️ Setup Instructions
+
+### Prerequisites
 
 - Python 3.11
 - CUDA-compatible GPU (recommended) or CPU
 - ~6GB VRAM for the default model
 
-## Installation
+### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd <repo-folder>
+   git clone https://github.com/Dalageo/local-vllm-agent
+   cd local-vllm-agent
    ```
 
 2. **Install dependencies with Poetry**
@@ -60,12 +75,12 @@ A local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [La
    poetry install
    ```
 
-## Configuration
+### Configuration
 
 Edit `app/config.py` to customize the model and settings:
 
 ```python
-MODEL_NAME = 'mistralai/Ministral-3-3B-Instruct-2512'  # Any vLLM-compatible model
+MODEL_NAME = 'mistralai/Ministral-3-3B-Instruct-2512'   # Any vLLM-compatible model
 TOOL_PARSER = "mistral"                                 # Tool call parser
 MAX_TOKENS = 8192                                       # Context window
 BASE_URL = "http://localhost:8000/v1"                   # vLLM server URL
@@ -82,9 +97,18 @@ Any model compatible with vLLM that supports tool calling:
 | `meta-llama/Llama-3.1-8B-Instruct` | ~16GB | `llama3_json` |
 | `Qwen/Qwen2.5-7B-Instruct` | ~14GB | `hermes` |
 
-Update `TOOL_PARSER` in config to match your model's tool calling format.
+*Update `TOOL_PARSER` in config to match your model's tool calling format.*
 
-## Usage
+### API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Web interface |
+| `/api/chat` | POST | Chat with streaming (SSE) |
+| `/api/health` | GET | Health check |
+| `/api/tools` | GET | List available tools |
+
+## 💻 Usage
 
 ### Step 1: Start the vLLM Server
 
@@ -92,7 +116,7 @@ Update `TOOL_PARSER` in config to match your model's tool calling format.
 bash app/scripts/start_agent.sh
 ```
 
-This launches the vLLM OpenAI-compatible API server. Wait until you see the model is loaded.
+*This launches the vLLM OpenAI-compatible API server. Wait until you see the model is loaded.*
 
 ### Step 2: Start the Web Interface
 
@@ -102,11 +126,11 @@ In a new terminal:
 bash app/scripts/start_app.sh
 ```
 
-### Step 3: Open the Chat
+### Step 3: Access the Interface
 
-Navigate to **http://localhost:8080** in your browser.
+Navigate to **http://localhost:8080** in your browser to start chatting.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 ├── app/
@@ -127,41 +151,7 @@ Navigate to **http://localhost:8080** in your browser.
 └── README.md
 ```
 
-## API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Web interface |
-| `/api/chat` | POST | Chat with streaming (SSE) |
-| `/api/health` | GET | Health check |
-| `/api/tools` | GET | List available tools |
-
-### Chat Request Example
-
-```bash
-curl -X POST http://localhost:8080/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message": "What is the weather in Tokyo?", "session_id": "my-session"}'
-```
-
-## Adding Custom Tools
-
-Create a new tool in `app/utils/tools.py`:
-
-```python
-from langchain_core.tools import tool
-
-@tool
-def my_custom_tool(param: str) -> dict:
-    """Description of what the tool does."""
-    # Your implementation
-    return {"result": "..."}
-
-# Add to the tools list
-tools = [get_current_weather, get_currency_exchange_rates, web_search, my_custom_tool]
-```
-
-## Troubleshooting
+## ❓ Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
@@ -169,6 +159,6 @@ tools = [get_current_weather, get_currency_exchange_rates, web_search, my_custom
 | `Connection refused on :8000` | Ensure vLLM server is running (`start_agent.sh`) |
 | `Agent not ready` | Wait for model to fully load before starting web interface |
 
-## License
+## ⚖️ License
 
 MIT
