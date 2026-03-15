@@ -1,7 +1,7 @@
 [project]
-name = "agent"
+name = "Local vLLM Agent"
 version = "0.1.0"
-description = "VLLM agent"
+description = "An interactive web app featuring an AI agent. It uses LangChain for the agent's brain and workflows, and vLLM as the engine to run the model smoothly without overloading the system."
 authors = [
     {name = "Konstantinos Dalageorgos",email = "kon.dalageorgos@gmail.com"}
 ]

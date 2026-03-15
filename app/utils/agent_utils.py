@@ -3,8 +3,8 @@ import asyncio
 from typing import AsyncGenerator
 from app.utils.tools import tools
 from langchain_openai import ChatOpenAI
-from app.config import MODEL_NAME, BASE_URL
 from app.utils.prompt import instructions
+from app.config import MODEL_NAME, VLLM_URL
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph.state import CompiledStateGraph
@@ -14,7 +14,7 @@ memory = MemorySaver()
 def get_agent(model_name: str = MODEL_NAME) -> CompiledStateGraph:
     
     llm = ChatOpenAI(openai_api_key = "EMPTY",
-                     openai_api_base = BASE_URL,
+                     openai_api_base = VLLM_URL,
                      model_name = model_name,
                      temperature = 0.2)
     
