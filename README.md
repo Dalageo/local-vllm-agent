@@ -1,4 +1,8 @@
 <div align="center">
+  <img src="https://github.com/user-attachments/assets/793022d2-767d-4771-9611-b54e36eb6b49" width="900" />
+</div>
+
+<div align="center">
   <a href="https://www.python.org/downloads/release/python-3110/" target="_blank">
   <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python 3.11"></a>
   <a href="https://github.com/Dalageo/local-vllm-agent/blob/prd/LICENSE" target="_blank">
