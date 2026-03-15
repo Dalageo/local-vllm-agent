@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/stars/Dalageo/local-vllm-agent?style=social" alt="GitHub stars">
 </div> 
 
-# vLLM Agent <img src="https://github.com/user-attachments/assets/e051e21a-ae95-4f2b-8be1-d3edc059949d" width="28">
+# Local vLLM Agent <img src="https://github.com/user-attachments/assets/e051e21a-ae95-4f2b-8be1-d3edc059949d" width="28">
 
 This project implements a local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [LangGraph](https://github.com/langchain-ai/langgraph), with a modern web interface for interactive conversations. The agent uses the ReAct (Reasoning + Acting) pattern to intelligently use tools and provide informed responses.
 
