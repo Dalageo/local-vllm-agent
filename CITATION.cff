@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If this project was helpful, please cite it as below."
+title: "local-vllm-agent"
+authors:
+  - family-names: "Dalageorgos"
+    given-names: "Konstantinos"
+version: "1.0.0" 
+date-released: "2026-15-03"
+repository-code: "https://github.com/Dalageo/local-vllm-agent"
+license: "GNU Affero General Public License v3.0"
