@@ -167,9 +167,7 @@ Navigate to `http://localhost:8080` in your browser to start chatting.
 
 Special thanks to the teams behind the open-source tools that made this agent possible: [Mistral](https://mistral.ai/) for open-sourcing the `Ministral-3-3B-Instruct-2512 model`, [vLLM](https://vllm.ai/) for running the model efficiently so it generates answers fast without overloading the system, and [LangChain](https://www.langchain.com/) for providing the building blocks to structure the agent and make all the pieces work together.
 
-
 <div align="center">
-  <br>
   <a href="https://mistral.ai/">
     <img src="https://github.com/user-attachments/assets/96902e37-fac4-458f-ae4d-ec17aea2bc19" alt="Mistral" width="95"/></a>
   &nbsp;&nbsp;&nbsp;&nbsp;
@@ -191,7 +189,6 @@ This repository utilizes components with different licenses:
 
 
 <div align="center">
-  <br>
   <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
     <img src="https://github.com/user-attachments/assets/f3c6face-aa86-45da-8d20-d8ae25e49e28" alt="AGPLv3-Logo" width="200""></a>
     &nbsp;&nbsp;&nbsp;&nbsp;
