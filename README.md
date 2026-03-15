@@ -83,7 +83,7 @@ Edit `app/config.py` to customize the model and settings:
 MODEL_NAME = 'mistralai/Ministral-3-3B-Instruct-2512'   # Any vLLM-compatible model
 TOOL_PARSER = "mistral"                                 # Tool call parser
 MAX_TOKENS = 8192                                       # Context window
-BASE_URL = "http://localhost:8000/v1"                   # vLLM server URL
+VLLM_URL = "http://localhost:8000/v1"                   # vLLM server URL
 ```
 
 ### Supported Models
@@ -128,7 +128,7 @@ bash app/scripts/start_app.sh
 
 ### Step 3: Access the Interface
 
-Navigate to **http://localhost:8080** in your browser to start chatting.
+Navigate to `http://localhost:8080` in your browser to start chatting.
 
 ## 📁 Project Structure
 
