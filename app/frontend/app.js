@@ -354,7 +354,7 @@ function addUserMessage(text) {
         <div class="message-content">${escapeHtml(text)}</div>
     `;
     elements.messages.appendChild(message);
-    scrollToBottom();
+    scrollToBottom(true); 
 }
 
 function createAgentMessage() {
@@ -363,12 +363,12 @@ function createAgentMessage() {
     message.innerHTML = `
         <div class="message-header">
             <span>⚡</span>
-            <span>agent</span>
+            <span>Agent</span>
         </div>
         <div class="message-content"><span class="typing-cursor"></span></div>
     `;
     elements.messages.appendChild(message);
-    scrollToBottom();
+    scrollToBottom(true); 
     return message;
 }
 
@@ -401,7 +401,7 @@ function addErrorMessage(text) {
         <div class="message-content">⚠️ ${escapeHtml(text)}</div>
     `;
     elements.messages.appendChild(message);
-    scrollToBottom();
+    scrollToBottom(true); // Force scroll for errors
 }
 
 
@@ -478,8 +478,17 @@ function closeSettings() {
     elements.settingsModal.classList.remove('active');
 }
 
-function scrollToBottom() {
-    elements.messages.scrollTop = elements.messages.scrollHeight;
+function isNearBottom() {
+    const threshold = 100; // pixels from bottom
+    const { scrollTop, scrollHeight, clientHeight } = elements.messages;
+    return scrollHeight - scrollTop - clientHeight < threshold;
+}
+
+function scrollToBottom(force = false) {
+    // Only auto-scroll if user is near bottom or force is true
+    if (force || isNearBottom()) {
+        elements.messages.scrollTop = elements.messages.scrollHeight;
+    }
 }
 
 

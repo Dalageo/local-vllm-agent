@@ -354,7 +354,7 @@ body {
 
 .ascii-art {
     color: var(--primary);
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
     text-shadow: 0 0 10px var(--primary-glow);
