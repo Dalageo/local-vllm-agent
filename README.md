@@ -1,8 +1,8 @@
 <div align="center">
   <a href="https://www.python.org/downloads/release/python-3110/" target="_blank">
   <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python 3.11"></a>
-  <a href="https://github.com/Dalageo/local-vllm-agent/blob/dev/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/License-MIT-800080" alt="License: MIT"></a>
+  <a href="https://github.com/Dalageo/local-vllm-agent/blob/prd/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/License-AGPL%20v3-800080" alt="License: AGPLv3"></a>
   <img src="https://img.shields.io/github/stars/Dalageo/local-vllm-agent?style=social" alt="GitHub stars">
 </div> 
 
