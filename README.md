@@ -24,9 +24,9 @@ This project implements a local AI agent powered by [vLLM](https://github.com/vl
 
 | Tool | Description |
 |------|-------------|
-| 🌤️ Weather | Get current weather for any location (Open-Meteo API) |
-| 💱 Currency | Live exchange rates between currencies (Frankfurter API) |
-| 🔍 Web Search | Search the internet via DuckDuckGo |
+| 🌤️ Weather | Get current weather for any location [Open-Meteo API](https://open-meteo.com/) |
+| 💱 Currency | Live exchange rates between currencies [Frankfurter API](https://frankfurter.dev/) |
+| 🔍 Web Search | Search the internet via [DuckDuckGo](https://github.com/deedy5/ddgs) |
 
 *The agent automatically selects the best tool based on the user's request. You can expand these capabilities by adding new functions to `app/utils/tools.py`.*
 
