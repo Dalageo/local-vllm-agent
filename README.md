@@ -14,6 +14,7 @@
 
 This project implements a local AI agent powered by [vLLM](https://github.com/vllm-project/vllm) and [LangGraph](https://github.com/langchain-ai/langgraph), with a modern web interface for interactive conversations. The agent uses the ReAct (Reasoning + Acting) pattern to intelligently use tools and provide informed responses.
 
+<br>
 
 ## 🚀 Features
 
@@ -33,6 +34,8 @@ This project implements a local AI agent powered by [vLLM](https://github.com/vl
 | 🔍 Web Search | Search the internet via [DuckDuckGo](https://github.com/deedy5/ddgs) |
 
 *The agent automatically selects the best tool based on the user's request. You can expand these capabilities by adding new functions to `app/utils/tools.py`.*
+
+<br>
 
 ## 🛠️Development Workflow
 This project follows a three-tier branching strategy with automated deployments:
@@ -56,6 +59,8 @@ This project follows a three-tier branching strategy with automated deployments:
 - Workflow: `.github/workflows/deploy_prd.yml`
 
 *Although this is a personal project, the CI/CD pipeline adheres to professional standards for maintaining a stable codebase and facilitating effective collaboration.*
+
+<br>
 
 ## ⚙️ Setup Instructions
 
@@ -112,6 +117,8 @@ Any model compatible with vLLM that supports tool calling:
 | `/api/health` | GET | Health check |
 | `/api/tools` | GET | List available tools |
 
+<br>
+
 ## 💻 Usage
 
 ### Step 1: Start the vLLM Server
@@ -134,6 +141,8 @@ bash app/scripts/start_app.sh
 
 Navigate to `http://localhost:8080` in your browser to start chatting.
 
+<br>
+
 ## 📁 Project Structure
 
 ```
@@ -155,6 +164,8 @@ Navigate to `http://localhost:8080` in your browser to start chatting.
 └── README.md
 ```
 
+<br>
+
 ## ❓ Troubleshooting
 
 | Issue | Solution |
@@ -162,6 +173,8 @@ Navigate to `http://localhost:8080` in your browser to start chatting.
 | `CUDA out of memory` | Use a smaller model or reduce `MAX_TOKENS` |
 | `Connection refused on :8000` | Ensure vLLM server is running (`start_agent.sh`) |
 | `Agent not ready` | Wait for model to fully load before starting web interface |
+
+<br>
 
 ## ✨ Acknowledgments
 
@@ -178,6 +191,8 @@ Special thanks to the teams behind the open-source tools that made this agent po
     <img src="https://github.com/user-attachments/assets/79e935ba-96a6-4911-8e70-0e3dae15966d" alt="Langchain" width="100"/></a>
 </div>
 
+<br>
+
 ## ⚖️ License
 
 This repository utilizes components with different licenses:
@@ -187,11 +202,11 @@ This repository utilizes components with different licenses:
 
 * **The vLLM Library:** vLLM is a fast, open-source library for LLM inference and serving, licensed under the **[Apache License 2.0](https://github.com/vllm-project/vllm/blob/main/LICENSE)**.
 
-
+<br>
 <div align="center">
   <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
     <img src="https://github.com/user-attachments/assets/f3c6face-aa86-45da-8d20-d8ae25e49e28" alt="AGPLv3-Logo" width="200""></a>
     &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.apache.org/licenses/LICENSE-2.0">
-    <img src="https://github.com/user-attachments/assets/bcf30286-f8b7-488a-8300-ec2464090c33" alt="Apache License 2.0" width="200" height="100"></a>
+    <img src="https://github.com/user-attachments/assets/bcf30286-f8b7-488a-8300-ec2464090c33" alt="Apache License 2.0" width="200"></a>
 </div>
